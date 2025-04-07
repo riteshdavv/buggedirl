@@ -81,6 +81,19 @@ export default function Home() {
     document.body.removeChild(link)
   }
 
+  const surpriseErrors = [
+    'TypeError: undefined is not a function',
+    'NullPointerException at line 69',
+    'Segmentation Fault 💀',
+    'npm ERR! code ERESOLVE',
+    '403 Forbidden... again?'
+  ];
+
+  const handleSurprise = () => {
+    const random = surpriseErrors[Math.floor(Math.random() * surpriseErrors.length)];
+    setError(random);
+  };
+
   return (
     <main className="min-h-screen w-full bg-gradient-to-b from-yellow-50 via-white to-yellow-100 flex items-center justify-center px-4 py-10 font-sans">
       <div className="w-full max-w-2xl space-y-10">
@@ -102,20 +115,29 @@ export default function Home() {
                 value={error}
                 onChange={(e) => setError(e.target.value)}
               />
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-xl transition"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating Meme...
-                  </>
-                ) : (
-                  "Generate Meme"
-                )}
-              </Button>
+              <div className="mt-4 flex gap-4">
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-xl transition"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Generating Meme...
+                    </>
+                  ) : (
+                    "Generate Meme"
+                  )}
+                </Button>
+                <button
+                  onClick={handleSurprise}
+                  className="px-4 py-2 text-sm font-medium text-purple-700 border border-purple-400 rounded-xl hover:bg-purple-50 transition"
+                >
+                  🎲 Surprise Me
+                </button>
+              </div>
+              
             </form>
           </CardContent>
         </Card>
