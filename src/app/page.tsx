@@ -8,8 +8,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
 import { Loader2 } from "lucide-react"
-"@ts-expect-error"
-import confetti from "canvas-confetti"
 
 export default function Home() {
   const [error, setError] = useState("")
@@ -47,12 +45,6 @@ export default function Home() {
 
       const data = await response.json()
       setMemeUrl(data.memeUrl)
-
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      })
 
       toast({
         title: "Success!",
