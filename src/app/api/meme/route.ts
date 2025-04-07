@@ -1,23 +1,20 @@
 import { NextRequest, NextResponse } from "next/server"
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   try {
-    const { error } = await request.json()
+    const { error } = await request.json();
 
     if (!error) {
-      return NextResponse.json({ error: "Error message is required" }, { status: 400 })
+      return NextResponse.json({ error: "Error message is required" }, { status: 400 });
     }
 
-    // Step 1: Generate a sarcastic roast using our function
-    const roast = await generateRoast(error)
+    const roast = await generateRoast(error);
+    const memeUrl = await createMemeWithRandomTemplate(roast);
 
-    // Step 2: Create a meme using Imgflip API with random Gen Z templates
-    const memeUrl = await createMemeWithRandomTemplate(roast)
-
-    return NextResponse.json({ memeUrl })
+    return NextResponse.json({ memeUrl });
   } catch (error) {
-    console.error("Meme generation error:", error)
-    return NextResponse.json({ error: "Failed to generate meme" }, { status: 500 })
+    console.error("Meme generation error:", error);
+    return NextResponse.json({ error: "Failed to generate meme" }, { status: 500 });
   }
 }
 
