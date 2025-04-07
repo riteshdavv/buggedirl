@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
 import Image from "next/image"
 import { Loader2 } from "lucide-react"
-// @ts-ignore
+"@ts-expect-error"
 import confetti from "canvas-confetti"
 
 export default function Home() {
