@@ -87,6 +87,10 @@ async function createMemeWithRandomTemplate(text: string): Promise<string> {
     const username = process.env.IMGFLIP_USERNAME || "";
     const password = process.env.IMGFLIP_PASSWORD || "";
 
+    console.log("Username:", username)
+    console.log("Password:", password)
+
+
     if (!username || !password) {
       throw new Error("Missing Imgflip credentials");
     }
